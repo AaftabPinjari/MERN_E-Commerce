@@ -1,6 +1,7 @@
 import express from 'express'
 import productRoutes from './routes/productRoutes.js'
 // import products from './data/products.js'
+import { notFound, errorHandler } from './middlewares/errorMiddleware.js'
 import connectDB from './config/db.js'
 import dotenv from 'dotenv'
 
@@ -17,6 +18,10 @@ app.get('/', (req, res) => {
 })
 
 app.use('/api/products', productRoutes)
+
+//custom error handling
+app.use(notFound)
+app.use(errorHandler)
 
 
 app.listen(PORT, console.log(`Server running in ${process.env.NODE_ENV} mode on port ${PORT}`))
