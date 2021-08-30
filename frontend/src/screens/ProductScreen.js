@@ -3,7 +3,9 @@ import { Link } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { Card, Row, Col, ListGroup, Image, Button, Form } from 'react-bootstrap'
 import Rating from '../components/Rating'
+// import { addToCart } from '../actions/carActions'
 import { listProductDetails } from '../actions/productActions'
+import { addToCart } from '../actions/carActions'
 
 
 
@@ -22,9 +24,11 @@ const ProductScreen = ({ history, match }) => {
         dispatch(listProductDetails(match.params.id))
 
     }, [dispatch, match])
-
     const addToCartHandler = () => {
-        history.push(`/cart/${match.params.id}?${qty}`)
+        dispatch(addToCart(match.params.id, qty))
+        // history.push(`/cart/${match.params.id}?qty=${qty}`)
+        history.replace('/cart')
+        console.log('add')
     }
 
     return (
@@ -80,8 +84,10 @@ const ProductScreen = ({ history, match }) => {
                                             <Col>Qty</Col>
                                             <Col>
                                                 <Form.Control as="select" value={qty} onChange={(e) =>
-                                                    setQty(e.target.value)
+                                                    setQty(Number(e.target.value))
+                                                    // (e).preventDefault()
                                                 }>
+                                                    {console.log(qty)}
                                                     {[...Array(product.countInStock).keys()].map((x) => (
                                                         <option key={x + 1} value={x + 1}>
                                                             {x + 1}
