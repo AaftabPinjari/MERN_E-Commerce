@@ -27,7 +27,7 @@ const userSchema = mongoose.Schema({
 userSchema.methods.matchPassword = async function (enteredPasssword) {
     return await bcrypt.compare(enteredPasssword, this.password)
 }
-
+// hashing of plain text password before saving the user in database
 userSchema.pre('save', async function (next) {
 
     if (!this.isModified('password')) {

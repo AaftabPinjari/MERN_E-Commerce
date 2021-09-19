@@ -28,7 +28,6 @@ const ProductScreen = ({ history, match }) => {
         dispatch(addToCart(match.params.id, qty))
         // history.push(`/cart/${match.params.id}?qty=${qty}`)
         history.replace('/cart')
-        console.log('add')
     }
 
     return (
@@ -87,7 +86,6 @@ const ProductScreen = ({ history, match }) => {
                                                     setQty(Number(e.target.value))
                                                     // (e).preventDefault()
                                                 }>
-                                                    {console.log(qty)}
                                                     {[...Array(product.countInStock).keys()].map((x) => (
                                                         <option key={x + 1} value={x + 1}>
                                                             {x + 1}
