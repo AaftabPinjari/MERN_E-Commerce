@@ -6,6 +6,8 @@ import Rating from '../components/Rating'
 // import { addToCart } from '../actions/carActions'
 import { listProductDetails } from '../actions/productActions'
 import { addToCart } from '../actions/carActions'
+import Loader from '../components/Loader'
+import Message from '../components/Message'
 
 
 
@@ -33,7 +35,7 @@ const ProductScreen = ({ history, match }) => {
     return (
         <>
             <Link to="/"><Button className="btn btn-light my-3">Go Back</Button></Link>
-            {loading ? <h1>Loading...</h1> : error ? <h3>{error}</h3> :
+            {loading ? <Loader /> : error ? <Message variant='danger'>{error}</Message> :
                 <Row>
                     <Col md={6}>
                         <Image src={product.image} alt={product.name} fluid />
