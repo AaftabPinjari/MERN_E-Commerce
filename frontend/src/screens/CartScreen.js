@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { Row, Col, ListGroup, Image, Button, Card, ListGroupItem } from 'react-bootstrap'
 import { addToCart, removeFromCart } from '../actions/carActions'
+import Message from '../components/Message'
 
 const CartScreen = ({ match, history, location }) => {
 
@@ -39,7 +40,7 @@ const CartScreen = ({ match, history, location }) => {
     return (
         <Row>
             <Col md={8}><h1>Shopping Cart</h1>
-                {cartItems.length === 0 ? <h1>Your Cart is Empty!<Link to="/">Go Back</Link></h1> :
+                {cartItems.length === 0 ? <Message variant='success'>Your Cart is Empty! <Link to="/">Go Back</Link></Message> :
                     <ListGroup variant="flush">
                         {cartItems.map(item => (
                             <ListGroupItem key={item.product}>

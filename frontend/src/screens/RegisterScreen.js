@@ -32,8 +32,10 @@ function RegisterScreen({ location, history }) {
         e.preventDefault()
         if (password !== confirmPassword) {
             setMessage("Password Doesn't Match")
+        } else {
+
+            dispatch(register(name, email, password))
         }
-        dispatch(register(name, email, password))
     }
 
     return (
